@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./src/config/db");
 const authRoutes = require("./src/routes/authRoutes");
+const designerRoutes = require("./src/routes/designerRoutes");
 const { authenticateToken } = require("./src/middleware/authMiddleware");
 const { requireRole } = require("./src/middleware/roleMiddleware");
 
@@ -14,6 +15,9 @@ app.use(express.json());
 
 // ── Auth routes ──────────────────────────────────────────────────────────────
 app.use("/api/auth", authRoutes);
+
+// ── Designer management routes (ADMIN only) ───────────────────────────────────
+app.use("/api/designers", designerRoutes);
 
 // ── Health check ─────────────────────────────────────────────────────────────
 app.get("/", (req, res) => {

@@ -23,8 +23,11 @@ const userSchema = new mongoose.Schema({
   },
 
   passwordHash: {
+    // Optional — Designers start without a password (status: "INVITED").
+    // A hash is set only after the Designer completes the invitation flow.
     type: String,
-    required: true,
+    required: false,
+    default: null,
   },
 
   role: {
